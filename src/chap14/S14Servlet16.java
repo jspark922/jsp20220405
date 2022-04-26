@@ -81,8 +81,50 @@ public class S14Servlet16 extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String sql = "UPDATE Employees "
+				+ "SET LastName = ?, "
+				+ "    FirstName = ?, "
+				+ "    BirthDate = ?, "
+				+ "    Photo = ?, "
+				+ "    Notes = ? "
+				+ "WHERE EmployeeID = ?";
+		
+		ServletContext application = getServletContext();
+		DataSource ds = (DataSource) application.getAttribute("dbpool");
+		
+		String lastName = request.getParameter("lastName");
+		String firstName = request.getParameter("firstName");
+		String birthDate = request.getParameter("birthDate");
+		String picture = request.getParameter("pic");
+		String notes = request.getParameter("notes");
+		String id = request.getParameter("id");
+		
+		int result = 0;
+		
+		try (Connection con = ds.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				) {
+			pstmt.setString(1, lastName);
+			pstmt.setString(2, firstName);
+			pstmt.setString(3, birthDate);
+			pstmt.setString(4, picture);
+			pstmt.setString(5, notes);
+			pstmt.setInt(6, Integer.parseInt(id));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		String path = "S14Servlet16";
+		if (result == 1) {
+			path += "?success=true";
+		} else {
+			path += "?success=false";
+		}
+		
+		response.sendRedirect(path);
 	}
 
 }

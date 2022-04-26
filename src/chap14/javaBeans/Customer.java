@@ -1,10 +1,19 @@
 package chap14.javaBeans;
 
 public class Customer {
+	private Integer id;
 	private String name;
 	private String city;
 	private String country;
 	private String postCode;
+	
+	public Integer getId() {
+		return id;
+	}
+	
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	public String getPostCode() {
 		return postCode;

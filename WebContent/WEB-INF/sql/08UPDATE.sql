@@ -1,7 +1,7 @@
 USE w3schools;
 
 -- safe mode 해제
-SET SQL_SAFE_UPDATES = 1;
+SET SQL_SAFE_UPDATES = 0;
 
 SELECT * FROM Employees ORDER BY EmployeeID DESC;
 DESC Employees;
