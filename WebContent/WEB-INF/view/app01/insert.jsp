@@ -13,7 +13,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<my:navBar current='insert'/>
+	<my:navBar current="insert"></my:navBar>
+	<!-- .container>.row>.col>h1{글 작성} -->
 	<div class="container">
 		<div class="row">
 			<div class="col">
@@ -22,12 +23,12 @@
 				<form action="${appRoot }/board/insert" method="post">
 					<div>
 						<label class="form-label" for="input1">제목</label>
-						<input class="form-control" type="text" name="title" required id="input1"/>
+						<input class="form-control" type="text" name="title" required id="input1" />
 					</div>
 					
 					<div>
-						<label class="form-label" for="textareal">본문</label>
-						<textarea class="form-control" name="" id="textarea1" cols="30" rows="10"></textarea>
+						<label class="form-label" for="textarea1">본문</label>
+						<textarea class="form-control" name="body" id="textarea1" cols="30" rows="10"></textarea>
 					</div>
 					
 					<button class="btn btn-primary">작성</button>
